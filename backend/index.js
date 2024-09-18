@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
-const requestLogger = require("./middleware/requestLogger.js");
-const unknownEndpoint = require("./middleware/unknownEndpoint");
+const requestLogger = require("./utils/requestLogger.js");
+const middleware = require("./utils/middleware.js");
 const cors = require("cors");
 app.use(express.json());
 app.use(cors());
@@ -67,8 +67,8 @@ app.get("/api/categories/:id", (request, response) => {
   response.json(category);
 });
 
-app.use(unknownEndpoint);
+app.use(middleware.unknownEndpoint);
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT);
 console.log(`Server running on port ${PORT}`);
