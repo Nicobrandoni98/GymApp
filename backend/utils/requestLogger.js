@@ -6,4 +6,4 @@ const requestLogger = (request, response, next) => {
   next()
 }
 
-module.exports = {requestLogger}
+module.exports = requestLogger

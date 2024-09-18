@@ -1,11 +1,11 @@
 const express = require("express");
 const app = express();
-const requestLogger = require("./utils/requestLogger.js");
+/* const requestLogger = require("./utils/requestLogger.js"); */
 const middleware = require("./utils/middleware.js");
 const cors = require("cors");
 app.use(express.json());
 app.use(cors());
-app.use(requestLogger);
+/* app.use(requestLogger); */
 
 let cardData = [
   {
