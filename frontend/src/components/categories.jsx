@@ -9,28 +9,10 @@ import {
   CardText,
   Button,
 } from "reactstrap";
+import { Link  } from "react-router-dom";
 
-const Categories = () => {
-  const cardData = [
-    {
-      title: "Pecho",
-      text: "Ejercicios para pecho",
-      buttonText: "Ir a los ejercicios",
-      img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRu8qK5mNV_W1j823KeA_qfF8wFLdoihyIsaA&s"
-    },
-    {
-      title: "Espalda",
-      text: "Ejercicios para espalda",
-      buttonText: "Ir a lo ejercicios",
-      img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5RZALev86EkvtZhn9ejHXhnnpw6UEA9-Pog&s"
-    },
-    { title: "Piernas", text: "Ejercicios para piernas", buttonText: "Ir a los ejercicios",
-        img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiHK-P8nRBBKNynjNxL295MUtkLDa5FNfKpA&s"
-     },
-     { title: "Brazos", text: "Ejercicios para brazos", buttonText: "Ir a los ejercicios",
-        img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3XyBlGIc8hO8R1BRwCjZrDlkNQcgZ42E02u08_L3kKQxZ1GE9nN1LQT26O9sZO-lHugI&usqp=CAU"
-     },
-  ];
+const Categories = ({cardData}) => {
+  
 
   return (
     <div>   
@@ -40,7 +22,7 @@ const Categories = () => {
         <Row>
           {cardData.map((card, index) => (
             <Col
-              sm="2"
+              sm="3"
               key={index}
               style={{ display: "flex", alignItems: "stretch" }}
             >
@@ -51,7 +33,7 @@ const Categories = () => {
                 <CardBody>
                   <CardTitle tag="h5">{card.title}</CardTitle>
                   <CardText>{card.text}</CardText>
-                  <Button>{card.buttonText}</Button>
+                  <Link to={`/category/${card.id}`}>Ir a los ejercicios</Link>
                 </CardBody>
               </Card>
             </Col>
