@@ -6,6 +6,8 @@ const cors = require("cors");
 app.use(express.json());
 app.use(cors());
 /* app.use(logger.requestLogger); */
+app.use(express.static('build'));
+
 
 let cardData = [
   {
