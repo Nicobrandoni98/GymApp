@@ -47,7 +47,8 @@ let cardData = [
     id: "4",
     title: "Ejercicios para brazos",
     exercises: [
-      "Curl de bicep",
+      "Curl de bicep con mancuernas",
+      "Curl de bicep con barra",
       "Extension triceps con soga",
       "Vuelos laterales",
     ],
