@@ -1,30 +1,144 @@
 {
-  "cardData": [
+  "infoCategories" : [
     {
-      "id": "1",     
-      "title": "Ejercicios para pecho",
-      "exercises": [
-        "Press Banca",
-        "Press banca inclinado",
-        "Apertura con mancuernas",
-        "Cruce de Poleas"
-      ],
-      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRu8qK5mNV_W1j823KeA_qfF8wFLdoihyIsaA&s"
+        "id": "1",
+        "title": "Pecho",
+        "exercises": [
+            {
+                "name": "Press Banca",
+                "details": "Ejercicio de pecho con barra",
+                "peso": 0,
+                "repeticiones": 0,
+                "series": 0
+            },
+            {
+                "name": "Press banca inclinado",
+                "details": "Ejercicio inclinado de pecho",
+                "peso": 0,
+                "repeticiones": 0,
+                "series": 0
+            },
+            {
+                "name": "Apertura con mancuernas",
+                "details": "Apertura con mancuernas para el pectoral",
+                "peso": 0,
+                "repeticiones": 0,
+                "series": 0
+            },
+            {
+                "name": "Cruce de Poleas",
+                "details": "Cruces de poleas para pecho",
+                "peso": 0,
+                "repeticiones": 0,
+                "series": 0
+            }
+        ],
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRu8qK5mNV_W1j823KeA_qfF8wFLdoihyIsaA&s"
     },
     {
-      "id": "2",     
-      "title": "Ejercicios para espalda",
-      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5RZALev86EkvtZhn9ejHXhnnpw6UEA9-Pog&s"
+        "id": "2",
+        "title": "Espalda",
+        "exercises": [
+            {
+                "name": "Jalon al pecho",
+                "details": "Jalon al pecho para espalda",
+                "peso": 0,
+                "repeticiones": 0,
+                "series": 0
+            },
+            {
+                "name": "Remo con barra",
+                "details": "Remo con barra para la espalda",
+                "peso": 0,
+                "repeticiones": 0,
+                "series": 0
+            },
+            {
+                "name": "Remo T",
+                "details": "Remo T para espalda",
+                "peso": 0,
+                "repeticiones": 0,
+                "series": 0
+            },
+            {
+                "name": "Remo con mancuernas",
+                "details": "Remo con mancuernas para la espalda",
+                "peso": 0,
+                "repeticiones": 0,
+                "series": 0
+            }
+        ],
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5RZALev86EkvtZhn9ejHXhnnpw6UEA9-Pog&s"
     },
     {
-      "id": "3",    
-      "title": "Ejercicios para piernas",
-      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiHK-P8nRBBKNynjNxL295MUtkLDa5FNfKpA&s"
+        "id": "3",
+        "title": "Piernas",
+        "exercises": [
+            {
+                "name": "Sentadilla",
+                "details": "Ejercicio compuesto para todo el tren inferior.",
+                "peso": 80,
+                "repeticiones": 8,
+                "series": 4
+            },
+            {
+                "name": "Peso muerto",
+                "details": "Desarrollo de fuerza en piernas y espalda baja.",
+                "peso": 100,
+                "repeticiones": 5,
+                "series": 3
+            },
+            {
+                "name": "Extension de cuadriceps",
+                "details": "Aislamiento para los cuadriceps.",
+                "peso": 40,
+                "repeticiones": 15,
+                "series": 3
+            },
+            {
+                "name": "Prensa",
+                "details": "Alternativa a las sentadillas para desarrollo de piernas.",
+                "peso": 150,
+                "repeticiones": 10,
+                "series": 4
+            }
+        ],
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiHK-P8nRBBKNynjNxL295MUtkLDa5FNfKpA&s"
     },
     {
-      "id": "4",
-      "title": "Ejercicios para brazos",
-      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3XyBlGIc8hO8R1BRwCjZrDlkNQcgZ42E02u08_L3kKQxZ1GE9nN1LQT26O9sZO-lHugI&usqp=CAU"
+        "id": "4",
+        "title": "Brazos",
+        "exercises": [
+            {
+                "name": "Curl de bicep con mancuernas",
+                "details": "Aislamiento del bíceps con mancuernas.",
+                "peso": 12,
+                "repeticiones": 12,
+                "series": 3
+            },
+            {
+                "name": "Curl de bicep con barra",
+                "details": "Trabaja los bíceps con mayor carga.",
+                "peso": 30,
+                "repeticiones": 10,
+                "series": 4
+            },
+            {
+                "name": "Extension triceps con soga",
+                "details": "Aislamiento del tríceps con soga en polea.",
+                "peso": 25,
+                "repeticiones": 12,
+                "series": 4
+            },
+            {
+                "name": "Vuelos laterales",
+                "details": "Ejercicio para hombros y deltoides.",
+                "peso": 8,
+                "repeticiones": 15,
+                "series": 3
+            }
+        ],
+        "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3XyBlGIc8hO8R1BRwCjZrDlkNQcgZ42E02u08_L3kKQxZ1GE9nN1LQT26O9sZO-lHugI&usqp=CAU"
     }
-  ]
+]
 }

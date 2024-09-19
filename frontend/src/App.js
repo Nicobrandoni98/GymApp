@@ -9,21 +9,20 @@ const App = () => {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    console.log('effect');
     urlCategories.getAll().then((response) => {
-      console.log("promise fulfielled");
       setCards(response);
     });
   }, []);
-  console.log('render', cards.length, 'categories');
   
 
   return (
     <>
+    <div className="container">
     <Routes>
     <Route path="/" element={ <Categories cardData={cards} /> }/>
     <Route path="/category/:id" element={ <Category cardData={cards} /> }/>
     </Routes>
+    </div>
     </>
   );
 };
