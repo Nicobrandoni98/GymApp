@@ -8,7 +8,7 @@ const mongoose = require('mongoose')
 const password = process.argv[2]
 
 const url =
-  `mongodb+srv://nicobrandoni98:${password}@gymapp.8tqsl.mongodb.net/?retryWrites=true&w=majority&appName=GymApp`
+  `mongodb+srv://nicobrandoni98:123qwe@gymapp.8tqsl.mongodb.net/?retryWrites=true&w=majority&appName=GymApp`
 
 mongoose.set('strictQuery',false)
 
@@ -22,15 +22,16 @@ const categorieSchema = new mongoose.Schema({
     repeticiones: Number,
     series: Number
   }],
+  
   img: String
 })
 
 const Categorie = mongoose.model('Categorie', categorieSchema)
 
 const categorie = new Categorie({
-  title: 'espalda',
-  exercises: [{
-    name: 'espaldirijilla',
+  title: "espalda",
+  exercise: [{
+    name: "espaldirijilla",
     peso: 120,
     repeticiones: 12,
     series: 4

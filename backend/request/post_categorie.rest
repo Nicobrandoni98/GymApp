@@ -5,9 +5,9 @@ Content-Type: application/json
     "title": "Pierna",
     "exercise": [{
         "name": "Sentadilla",
-        "peso": "0",
-          "repeticiones": "0",
-          "series": "0"
+        "peso": 0,
+          "repeticiones": 0,
+          "series": 0
     }],
     "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiHK-P8nRBBKNynjNxL295MUtkLDa5FNfKpA&s"
 }
