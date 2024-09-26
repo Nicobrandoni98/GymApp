@@ -1,4 +1,4 @@
-const infoCategories = [
+/* const infoCategories = [
     {
       id: "1",
       title: "Pecho",
@@ -125,4 +125,4 @@ const infoCategories = [
     },
   ];
 
-  module.exports = infoCategories
+  module.exports = infoCategories */
