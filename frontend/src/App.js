@@ -13,6 +13,8 @@ const App = () => {
       setCards(response);
     });
   }, []);
+  console.log(cards);
+  
   
 
   return (

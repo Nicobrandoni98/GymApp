@@ -4,33 +4,60 @@ import { useParams } from "react-router-dom";
 import { Form, Button, Col, Container, Image, Row } from "react-bootstrap";
 import axios from "axios";
 
-
-const Category = ({ cardData }) => {
+const Category = () => {
   const { id } = useParams();
-  const selectedCategory = cardData.find((item) => item.id === id);
-  const [peso, setPeso] = useState([]);
-  const [repeticiones, setRepeticiones] = useState([]);
-  const [series, setSeries] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedExercise, setSelectedExercise] = useState("");
+  const [peso, setPeso] = useState("");
+  const [repeticiones, setRepeticiones] = useState("");
+  const [series, setSeries] = useState("");
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3001/api/categories/${id}`)
+      .then((response) => {
+        setSelectedCategory(response.data);
+      })
+      .catch((error) => {
+        console.error("error al obtener la categoria", error);
+      });
+  }, [id]);
 
   if (!selectedCategory) {
     return <div>Categoría no encontrada</div>;
   }
+
   const addInfo = (event) => {
     event.preventDefault();
-    const exerciseData = {
-      id: selectedCategory.id,
-      peso: peso,
-      repeticiones: repeticiones,
-      series: series
-    }
-    axios.post('http://localhost:3001/api/categories', exerciseData).then(response => {
-      console.log('Datos guardados', response.data);
-      setPeso('')
-      setRepeticiones('')
-      setSeries('')
-    })
-  };
 
+    if (!selectedExercise) {
+      return alert("Por favor, selecciona un ejercicio primero.");
+    }
+
+    const selectedExerciseObj = selectedCategory.exercise.find(
+      (ex) => ex._id === selectedExercise
+    );
+
+    if (!selectedExerciseObj) {
+      return alert("Ejercicio no encontrado");
+    }
+
+    const exerciseData = {
+      name: selectedExerciseObj.name,
+      peso: Number(peso),
+      repeticiones: Number(repeticiones),
+      series: Number(series),
+    };
+
+    axios
+      .put(`http://localhost:3001/api/categories/${id}/exercise`, exerciseData)
+      .then((response) => {
+        console.log("Datos actualizados", response.data);
+        setPeso("");
+        setRepeticiones("");
+        setSeries("");
+      });
+  };
 
   return (
     <div>
@@ -49,10 +76,13 @@ const Category = ({ cardData }) => {
         <Form.Select
           aria-label="Default select example"
           style={{ width: "18em" }}
+          value={selectedExercise}
+          onChange={(e) => setSelectedExercise(e.target.value)}
+          required
         >
           <option>-</option>
-          {selectedCategory.exercises.map((exercise, id) => (
-            <option key={id} value={id}>
+          {selectedCategory.exercise.map((exercise, id) => (
+            <option key={id} value={exercise._id}>
               {exercise.name}
             </option>
           ))}
@@ -61,30 +91,33 @@ const Category = ({ cardData }) => {
           <Form.Group controlId="formPeso">
             <Form.Label>Peso:</Form.Label>
             <Form.Control
-              type="text"
+              type="number"
               placeholder="Ingrese cantidad de KG"
               value={peso}
               onChange={(e) => setPeso(e.target.value)}
+              required
             />
           </Form.Group>
 
           <Form.Group controlId="formRepeticiones">
             <Form.Label>Repeticiones:</Form.Label>
             <Form.Control
-              type="text"
+              type="number"
               placeholder="Ingrese repes x serie"
               value={repeticiones}
               onChange={(e) => setRepeticiones(e.target.value)}
+              required
             />
           </Form.Group>
 
           <Form.Group controlId="formSeries">
             <Form.Label>Series:</Form.Label>
             <Form.Control
-              type="text"
+              type="number"
               placeholder="Ingrese total de series"
               value={series}
               onChange={(e) => setSeries(e.target.value)}
+              required
             />
           </Form.Group>
 
