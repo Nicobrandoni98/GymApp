@@ -1,13 +1,24 @@
+###
+@createdAt = {{$datetime iso8601}}
+###
 POST http://localhost:3001/api/categories
 Content-Type: application/json
 
 {
-    "title": "Pierna",
+    "title": "Pecho",
     "exercise": [{
-        "name": "Sentadilla",
+        "name": "Press banca",
         "peso": 0,
           "repeticiones": 0,
           "series": 0
-    }],
-    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiHK-P8nRBBKNynjNxL295MUtkLDa5FNfKpA&s"
+    },
+    {
+        "name": "Press incl. con mancuernas",
+        "peso": 0,
+          "repeticiones": 0,
+          "series": 0
+    }
+    ],
+    "createAt": "{{createdAt}}",
+    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRu8qK5mNV_W1j823KeA_qfF8wFLdoihyIsaA&s"
 }

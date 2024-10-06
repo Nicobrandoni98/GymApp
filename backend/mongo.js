@@ -12,17 +12,17 @@ const url =
 
 mongoose.set('strictQuery',false)
 
-mongoose.connect(url)
+mongoose.connect(url).then(x => {
 
 const categorieSchema = new mongoose.Schema({
   title: String,
-  exercises: [{
+  exercise: [{
     name: String,
     peso: Number,
     repeticiones: Number,
     series: Number
   }],
-  
+  createAt: Date,
   img: String
 })
 
@@ -36,6 +36,7 @@ const categorie = new Categorie({
     repeticiones: 12,
     series: 4
   }],
+  createAt: Date.now(),
   img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5RZALev86EkvtZhn9ejHXhnnpw6UEA9-Pog&s"
 })
 
@@ -45,10 +46,8 @@ categorie.save().then(result => {
   
   mongoose.connection.close()
 }) 
-
-/*   Categorie.find({}).then(result => {
-    result.forEach(categorie => {
-      console.log(categorie)
-    })
-    mongoose.connection.close()
-  }) */
+})
+.catch(err =>{
+  console.log(err);
+  
+})
