@@ -10,9 +10,18 @@ import {
   Button,
 } from "reactstrap";
 import { Link  } from "react-router-dom";
+import {useState, useEffect, React} from 'react'
+import urlCategories from "../services/urlCategories.js" 
 
-const Categories = ({cardData}) => {
-  
+const Categories = () => {
+  const [cards, setCards] = useState([]);
+
+  useEffect(() => {
+    urlCategories.getAll().then((response) => {
+      setCards(response);
+    });
+  }, []);
+  console.log(cards);
 
   return (
     <div>   
@@ -20,7 +29,7 @@ const Categories = ({cardData}) => {
     <h1>Categorias</h1>
       <Container fluid >
         <Row>
-          {cardData.map((card, index) => (
+          {cards.map((card, index) => (
             <Col
               sm="3"
               key={index}
