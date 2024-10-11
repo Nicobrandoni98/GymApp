@@ -45,6 +45,7 @@ app.post("/api/categories", (request, response) => {
     title: body.title,
     exercise: body.exercise,
     img: body.img,
+    createAt: Date.now()
   });
   categorie.save().then((savedCategorie) => {
     response.json(savedCategorie);

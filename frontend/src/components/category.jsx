@@ -58,6 +58,15 @@ const Category = () => {
         setSeries("");
       });
   };
+  
+  const showInfo = () => {
+      console.log(selectedCategory.exercise);
+      window.confirm(selectedCategory.exercise[0].name + selectedCategory.exercise[0].peso + ' ' + selectedCategory.exercise[0].repeticiones)
+      /* window.confirm('Peso: ' + data[0].peso + ' Repeticiones: ' + data[0].repeticiones + ' Series: ' + data[0].series + ' Time: ' + response.data.createAt) */
+      console.log('peso',peso);
+    
+    
+  }
 
   return (
     <div>
@@ -68,10 +77,9 @@ const Category = () => {
             <Image src={selectedCategory.img} width={"180px"} />
           </Col>
         </Row>
-        <Button variant="primary" type="submit">
+        <Button variant="primary" type="submit" onClick={showInfo}>
           Informacion
         </Button>
-        <p>{selectedCategory.text}</p>
         <p>Seleccione el ejercicio</p>
         <Form.Select
           aria-label="Default select example"

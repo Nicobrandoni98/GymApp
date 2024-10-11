@@ -1,24 +1,22 @@
-###
-@createdAt = {{$datetime iso8601}}
+
 ###
 POST http://localhost:3001/api/categories
 Content-Type: application/json
 
 {
-    "title": "Pecho",
+    "title": "Brazos",
     "exercise": [{
-        "name": "Press banca",
+        "name": "Vuelos laterales",
         "peso": 0,
           "repeticiones": 0,
           "series": 0
     },
     {
-        "name": "Press incl. con mancuernas",
+        "name": "Curl de bicep c/ mancuernas",
         "peso": 0,
           "repeticiones": 0,
           "series": 0
     }
     ],
-    "createAt": "{{createdAt}}",
-    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRu8qK5mNV_W1j823KeA_qfF8wFLdoihyIsaA&s"
+    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3XyBlGIc8hO8R1BRwCjZrDlkNQcgZ42E02u08_L3kKQxZ1GE9nN1LQT26O9sZO-lHugI&usqp=CAU"
 }

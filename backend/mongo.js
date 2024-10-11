@@ -22,7 +22,10 @@ const categorieSchema = new mongoose.Schema({
     repeticiones: Number,
     series: Number
   }],
-  createAt: Date,
+  createAt: {
+    type: Date,
+    default: Date.now
+  },
   img: String
 })
 
