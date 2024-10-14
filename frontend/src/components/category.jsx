@@ -12,17 +12,22 @@ const Category = () => {
   const [repeticiones, setRepeticiones] = useState("");
   const [series, setSeries] = useState("");
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3001/api/categories/${id}`)
-      .then((response) => {
-        setSelectedCategory(response.data);
-      })
-      .catch((error) => {
-        console.error("error al obtener la categoria", error);
-        setSelectedCategory({ exercise: [] });
+ useEffect(() => {
+  axios
+    .get(`http://localhost:3001/api/categories/${id}`)
+    .then((response) => {
+      // Asegúrate de que response.data.exercise es un array
+      setSelectedCategory({
+        ...response.data,
+        exercise: response.data.exercise || [], // Si no existe, establece un array vacío
       });
-  }, [id]);
+    })
+    .catch((error) => {
+      console.error("error al obtener la categoria", error);
+      setSelectedCategory({ exercise: [] });
+    });
+}, [id]);
+;
 
   if (!selectedCategory) {
     return <div>Categoría no encontrada</div>;
@@ -61,16 +66,22 @@ const Category = () => {
   };
 
   const showInfo = () => {
-    console.log(selectedCategory.exercise);
-    window.confirm(
-      selectedCategory.exercise[0].name +
-        selectedCategory.exercise[0].peso +
-        " " +
-        selectedCategory.exercise[0].repeticiones
-    );
-    /* window.confirm('Peso: ' + data[0].peso + ' Repeticiones: ' + data[0].repeticiones + ' Series: ' + data[0].series + ' Time: ' + response.data.createAt) */
-    console.log("peso", peso);
+    if (selectedCategory.exercise.length === 0) {
+      window.alert("No hay ejercicios disponibles.");
+      return;
+    }
+  
+    const infoMessage = selectedCategory.exercise
+      .map((exercise, index) => 
+        `Ejercicio ${index + 1}:\nNombre: ${exercise.name}\nPeso: ${exercise.peso} kg\nRepeticiones: ${exercise.repeticiones}\nSeries: ${exercise.series}`
+      )
+      .join("\n\n"); // Agrega un espacio entre cada ejercicio
+  
+    window.confirm(infoMessage);
+    console.log("Información de todos los ejercicios:", selectedCategory.exercise);
   };
+  
+  
 
   return (
     <div>
