@@ -6,7 +6,7 @@ import axios from "axios";
 
 const Category = () => {
   const { id } = useParams();
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState({ exercise: [] });
   const [selectedExercise, setSelectedExercise] = useState("");
   const [peso, setPeso] = useState("");
   const [repeticiones, setRepeticiones] = useState("");
@@ -20,6 +20,7 @@ const Category = () => {
       })
       .catch((error) => {
         console.error("error al obtener la categoria", error);
+        setSelectedCategory({ exercise: [] });
       });
   }, [id]);
 
@@ -58,15 +59,18 @@ const Category = () => {
         setSeries("");
       });
   };
-  
+
   const showInfo = () => {
-      console.log(selectedCategory.exercise);
-      window.confirm(selectedCategory.exercise[0].name + selectedCategory.exercise[0].peso + ' ' + selectedCategory.exercise[0].repeticiones)
-      /* window.confirm('Peso: ' + data[0].peso + ' Repeticiones: ' + data[0].repeticiones + ' Series: ' + data[0].series + ' Time: ' + response.data.createAt) */
-      console.log('peso',peso);
-    
-    
-  }
+    console.log(selectedCategory.exercise);
+    window.confirm(
+      selectedCategory.exercise[0].name +
+        selectedCategory.exercise[0].peso +
+        " " +
+        selectedCategory.exercise[0].repeticiones
+    );
+    /* window.confirm('Peso: ' + data[0].peso + ' Repeticiones: ' + data[0].repeticiones + ' Series: ' + data[0].series + ' Time: ' + response.data.createAt) */
+    console.log("peso", peso);
+  };
 
   return (
     <div>
@@ -89,11 +93,13 @@ const Category = () => {
           required
         >
           <option>-</option>
-          {selectedCategory.exercise.map((exercise, id) => (
-            <option key={id} value={exercise._id}>
-              {exercise.name}
-            </option>
-          ))}
+          {selectedCategory.exercise &&
+            Array.isArray(selectedCategory.exercise) &&
+            selectedCategory.exercise.map((exercise, id) => (
+              <option key={id} value={exercise._id}>
+                {exercise.name}
+              </option>
+            ))}
         </Form.Select>
         <Form onSubmit={addInfo}>
           <Form.Group controlId="formPeso">
