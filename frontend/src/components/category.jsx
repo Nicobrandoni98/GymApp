@@ -16,10 +16,9 @@ const Category = () => {
   axios
     .get(`https://gymapp-ift3.onrender.com/api/categories/${id}`)
     .then((response) => {
-      // Asegúrate de que response.data.exercise es un array
       setSelectedCategory({
         ...response.data,
-        exercise: response.data.exercise || [], // Si no existe, establece un array vacío
+        exercise: response.data.exercise || [], 
       });
     })
     .catch((error) => {
@@ -75,7 +74,7 @@ const Category = () => {
       .map((exercise, index) => 
         `Ejercicio ${index + 1}:\nNombre: ${exercise.name}\nPeso: ${exercise.peso} kg\nRepeticiones: ${exercise.repeticiones}\nSeries: ${exercise.series}`
       )
-      .join("\n\n"); // Agrega un espacio entre cada ejercicio
+      .join("\n");
   
     window.confirm(infoMessage);
     console.log("Información de todos los ejercicios:", selectedCategory.exercise);
