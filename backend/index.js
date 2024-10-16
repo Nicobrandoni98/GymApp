@@ -14,13 +14,13 @@ app.get("/", (request, response) => {
   response.send("Hellow");
 });
 
-app.get("/api/categories", (request, response) => {
+app.get("https://gymapp-ift3.onrender.com/api/categories", (request, response) => {
   Categorie.find({}).then((categorie) => {
     response.json(categorie);
   });
 });
 
-app.get("/api/categories/:id", (request, response) => {
+app.get("https://gymapp-ift3.onrender.com/api/categories/:id", (request, response) => {
   Categorie.findById(request.params.id)
     .then((categorie) => {
       if (categorie) {
@@ -35,7 +35,7 @@ app.get("/api/categories/:id", (request, response) => {
     });
 });
 
-app.post("/api/categories", (request, response) => {
+app.post("https://gymapp-ift3.onrender.com/api/categories", (request, response) => {
   const body = request.body;
 
   if (body.title === undefined || body.exercise === undefined) {
@@ -52,7 +52,7 @@ app.post("/api/categories", (request, response) => {
   });
 });
 
-app.put("/api/categories/:id/exercise", (request, response) => {
+app.put("https://gymapp-ift3.onrender.com/api/categories/:id/exercise", (request, response) => {
   const categoryId = request.params.id;
   const { name, peso, repeticiones, series } = request.body;
 
