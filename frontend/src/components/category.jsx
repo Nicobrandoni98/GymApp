@@ -14,7 +14,7 @@ const Category = () => {
 
  useEffect(() => {
   axios
-    .get(`https://gymapp-ift3.onrender.com//api/categories/${id}`)
+    .get(`https://gymapp-ift3.onrender.com/api/categories/${id}`)
     .then((response) => {
       // Asegúrate de que response.data.exercise es un array
       setSelectedCategory({
