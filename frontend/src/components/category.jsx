@@ -14,7 +14,7 @@ const Category = () => {
 
  useEffect(() => {
   axios
-    .get(`http://localhost:3001/api/categories/${id}`)
+    .get(`https://gymapp-ift3.onrender.com//api/categories/${id}`)
     .then((response) => {
       // Asegúrate de que response.data.exercise es un array
       setSelectedCategory({
@@ -56,7 +56,7 @@ const Category = () => {
     };
 
     axios
-      .put(`http://localhost:3001/api/categories/${id}/exercise`, exerciseData)
+      .put(`https://gymapp-ift3.onrender.com/api/categories/${id}/exercise`, exerciseData)
       .then((response) => {
         console.log("Datos actualizados", response.data);
         setPeso("");

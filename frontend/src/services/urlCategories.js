@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:3001/api/categories'
+const baseUrl = 'https://gymapp-ift3.onrender.com/api/categories'
 
 const getAll = () => {
     const request = axios.get(baseUrl)
