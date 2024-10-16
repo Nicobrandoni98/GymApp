@@ -11,7 +11,7 @@ const App = () => {
     <div className="container">
     <Routes>
     <Route path="/" element={ <Categories /> }/>
-    <Route path="/category/:id" element={ <Category /> }/>
+    <Route path="/api/categories/:id" element={ <Category /> }/>
     </Routes>
     </div>
     </>
