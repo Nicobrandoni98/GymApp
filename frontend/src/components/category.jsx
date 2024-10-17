@@ -74,7 +74,7 @@ const Category = () => {
       .map((exercise, index) => 
         `Ejercicio ${index + 1}:\nNombre: ${exercise.name}\nPeso: ${exercise.peso} kg\nRepeticiones: ${exercise.repeticiones}\nSeries: ${exercise.series}`
       )
-      .join("\n");
+      .join("\n\n");
   
     window.confirm(infoMessage);
     console.log("Información de todos los ejercicios:", selectedCategory.exercise);
