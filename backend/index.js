@@ -9,6 +9,7 @@ app.use(express.json());
 app.use(cors());
 /* app.use(logger.requestLogger); */
 app.use(express.static("build"));
+const path = require('path');
 
 app.get("/", (request, response) => {
   response.send("Hellow");
@@ -91,6 +92,10 @@ app.put("/api/categories/:id/exercise", (request, response) => {
       console.error(error);
       response.status(500).json({ error: "Failed to update category" });
     });
+});
+
+app.get('*', (request, response) => {
+  response.sendFile(path.resolve(__dirname, 'build', 'index.html'));
 });
 
 app.use(middleware.unknownEndpoint);
