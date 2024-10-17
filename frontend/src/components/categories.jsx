@@ -41,7 +41,7 @@ const Categories = () => {
                 <CardBody>
                   <CardTitle tag="h5">{card.title}</CardTitle>
                   <CardText>{card.text}</CardText>
-                  <Link to={`/exercise/${card.id}`}>Ir a los ejercicios</Link>
+                  <Link to={`/category/${card.id}`}>Ir a los ejercicios</Link>
                 </CardBody>
               </Card>
             </Col>
