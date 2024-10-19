@@ -1,54 +1,115 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  CardBody,
-  CardTitle,
-  CardText
-} from "reactstrap";
-import { Link  } from "react-router-dom";
-import {useState, useEffect, React} from 'react'
-import urlCategories from "../services/urlCategories.js" 
+import { Container, Row } from "reactstrap";
+import Accordion from "react-bootstrap/Accordion";
+import { Link } from "react-router-dom";
+import { useState, useEffect, React } from "react";
+import urlCategories from "../services/urlCategories.js";
+import axios from "axios";
+import Modal from "react-modal";
+
+Modal.setAppElement("#root");
 
 const Categories = () => {
   const [cards, setCards] = useState([]);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
+  const containerStyle = {
+    paddingTop: 56,
+  };
   useEffect(() => {
     urlCategories.getAll().then((response) => {
       setCards(response);
     });
   }, []);
-  console.log(cards);
+
+  const handleOpenModal = () => setModalIsOpen(true);
+  const handleCloseModal = () => setModalIsOpen(false);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert("Datos enviados");
+    handleCloseModal();
+  };
 
   return (
-    <div>   
     <div>
-    <h1>Categorias</h1>
-      <Container fluid >
+      <Container fluid style={containerStyle}>
         <Row>
-          {cards.map((card, index) => (
-            <Col
-              sm="3"
-              key={index}
-              style={{ display: "flex", alignItems: "stretch" }}
-            >
-              <Card>
-                <img
-                  alt="Sample"
-                  src={card.img}/>
-                <CardBody>
-                  <CardTitle tag="h5">{card.title}</CardTitle>
-                  <CardText>{card.text}</CardText>
-                  <Link to={`/category/${card.id}`}>Ir a los ejercicios</Link>
-                </CardBody>
-              </Card>
-            </Col>
-          ))}
+          <Accordion>
+            {cards.map((card, index) => {
+              return (
+                <Accordion.Item eventKey={index.toString()} key={index}>
+                  <Accordion.Header>
+                    {card.title || "Sin título"}
+                    <img
+                      alt="Sample"
+                      src={card.img}
+                      style={{ width: "40px" }}
+                    />
+                  </Accordion.Header>
+                  <Accordion.Body>
+                    {card.exercise.map((exercise, index) => {
+                      return (
+                        <div
+                          key={index}
+                          style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+                        >
+                          <p key={index}>{exercise.name}</p>
+                          <img
+                            src="/media/cargar-datos-exercise.png"
+                            alt="imagen-cargar-datos"
+                            style={{ width: "20px", cursor: "pointer" }}
+                            onClick={handleOpenModal}
+                          />
+                        </div>
+                      );
+                    })}
+                    <div>
+                      {/* Uso Modal para el formulario*/}
+                      <Modal
+                        isOpen={modalIsOpen}
+                        onRequestClose={handleCloseModal}
+                        contentLabel="Form"
+                        style={{
+                          content: {
+                            top: "50%",
+                            left: "50%",
+                            right: "auto",
+                            bottom: "auto",
+                            transform: "translate(-50%, -50%)",
+                          },
+                        }}
+                      >
+                        <h2>Formulario</h2>
+                        <form onSubmit={handleSubmit}>
+                          <label>
+                            Peso:
+                            <input type="number" required />
+                          </label>
+                          <br />
+                          <label>
+                            Repeticiones:
+                            <input type="number" required />
+                          </label>
+                          <br />
+                          <label>
+                            Series:
+                            <input type="number" required />
+                          </label>
+                          <button type="submit">Enviar</button>
+                          <button type="button" onClick={handleCloseModal}>
+                            Cancelar
+                          </button>
+                          <br />
+                        </form>
+                      </Modal>
+                    </div>
+                  </Accordion.Body>
+                </Accordion.Item>
+              );
+            })}
+          </Accordion>
         </Row>
       </Container>
-      </div>
     </div>
   );
 };
