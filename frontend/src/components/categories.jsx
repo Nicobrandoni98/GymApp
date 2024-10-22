@@ -13,9 +13,7 @@ const Categories = () => {
   const [cards, setCards] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const containerStyle = {
-    paddingTop: 56,
-  };
+  
   useEffect(() => {
     urlCategories.getAll().then((response) => {
       setCards(response);
@@ -32,7 +30,7 @@ const Categories = () => {
 
   return (
     <div>
-      <Container fluid style={containerStyle}>
+      <Container fluid style={{paddingTop: 56}}>
         <Row>
           <Accordion>
             {cards.map((card, index) => {
@@ -101,6 +99,18 @@ const Categories = () => {
                           </button>
                           <br />
                         </form>
+                        <p>
+                        {card.exercise.map((info, index) => {
+                          return (
+                            <div key={index}>
+
+                            <p>peso: {info.peso}</p>
+                            <p>repeticiones: {info.repeticiones}</p>
+                            <p>series: {info.series}</p>
+                            </div>
+                          )
+                        })}
+                        </p>
                       </Modal>
                     </div>
                   </Accordion.Body>

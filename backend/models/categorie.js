@@ -11,7 +11,7 @@ console.log("connecting to", url);
 mongoose
   .connect(url)
   .then((resulta) => {
-    console.log("connected to MongoDB")
+    console.log("connected to MongoDB");
   })
   .catch((error) => {
     console.log("error connecting to MongoDB:", error.message);
@@ -27,6 +27,10 @@ const categorieSchema = new mongoose.Schema({
       series: Number,
     },
   ],
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
   createAt: Date,
   img: String,
 });

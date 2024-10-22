@@ -2,6 +2,7 @@ import Categories from "./components/categories.jsx";
 import { Routes, Route } from "react-router-dom";
 import Category from "./components/category.jsx";
 import Home from "./components/home.jsx";
+import Login from './components/login.jsx'
 
 const App = () => {
   return (
@@ -10,7 +11,7 @@ const App = () => {
         <div className="row">
           <nav className="navbar bg-body-tertiary fixed-top">
             <div className="container-fluid">
-              <a className="navbar-brand" href="/">
+              <a className="navbar-brand" href="/home">
                 My Gym App
               </a>
               <button
@@ -45,7 +46,7 @@ const App = () => {
                       <a
                         className="nav-link active"
                         aria-current="page"
-                        href="/"
+                        href="/home"
                       >
                         Inicio
                       </a>
@@ -63,7 +64,8 @@ const App = () => {
           </nav>
         </div>
         <Routes>
-          <Route path="/" element={<Home />} />
+        <Route path="/" element={<Login />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/category/:id" element={<Category />} />
         </Routes>

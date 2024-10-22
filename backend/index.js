@@ -3,17 +3,12 @@ const express = require("express");
 const app = express();
 const middleware = require("./utils/middleware.js");
 const cors = require("cors");
-/* const infoCategories = require('./DB/infoCategories.js') */
+const usersRouter = require('./controllers/users.js')
 const Categorie = require("./models/categorie.js");
 app.use(express.json());
 app.use(cors());
-/* app.use(logger.requestLogger); */
 app.use(express.static("build"));
 const path = require('path');
-
-app.get("/", (request, response) => {
-  response.send("Hellow");
-});
 
 app.get("/api/categories", (request, response) => {
   Categorie.find({}).then((categorie) => {
@@ -97,6 +92,11 @@ app.put("/api/categories/:id/exercise", (request, response) => {
 app.get('*', (request, response) => {
   response.sendFile(path.resolve(__dirname, 'build', 'index.html'));
 });
+
+app.use('/api/users', usersRouter)
+
+
+
 
 app.use(middleware.unknownEndpoint);
 
