@@ -72,9 +72,7 @@ app.put("/api/categories/:id/exercise", (request, response) => {
     })
 });
 
-app.get('*', (request, response) => {
-  response.sendFile(path.resolve(__dirname, 'build', 'index.html'));
-});
+
 
 app.use('/api/users', usersRouter)
 
