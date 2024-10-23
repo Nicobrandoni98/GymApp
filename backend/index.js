@@ -74,7 +74,7 @@ app.put("/api/categories/:id/exercise", (request, response) => {
 
 
 
-app.use('/api/users', usersRouter)
+/* app.use('/api/users', usersRouter) */
 
 
 
