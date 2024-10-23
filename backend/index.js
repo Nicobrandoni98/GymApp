@@ -50,43 +50,26 @@ app.post("/api/categories", (request, response) => {
 
 app.put("/api/categories/:id/exercise", (request, response) => {
   const categoryId = request.params.id;
-  const { name, peso, repeticiones, series } = request.body;
+  const { name, peso, repeticiones, series } = request.body
 
-  // Validar que todos los campos necesarios están presentes
-  if (!name || peso === undefined || repeticiones === undefined || series === undefined) {
-    return response.status(400).json({ error: "Missing exercise data" });
-  }
-
-  // Buscar la categoría por su ID y luego actualizar el ejercicio correspondiente
   Categorie.findById(categoryId)
     .then(category => {
-      if (!category) {
-        return response.status(404).json({ error: "Category not found" });
-      }
 
-      // Encontrar el ejercicio por su nombre (o actualizarlo si ya existe)
       const existingExercise = category.exercise.find(ex => ex.name === name);
 
       if (existingExercise) {
-        // Actualizar los valores del ejercicio existente
         existingExercise.peso = peso;
         existingExercise.repeticiones = repeticiones;
         existingExercise.series = series;
       } else {
-        // Si no existe, agregar el nuevo ejercicio
         category.exercise.push({ name, peso, repeticiones, series });
       }
 
-      // Guardar los cambios en la base de datos
       return category.save();
     })
     .then(updatedCategory => {
       response.json(updatedCategory);
     })
-    .catch(error => {
-      console.error(error);
-      response.status(500).json({ error: "Failed to update category" });
-    });
 });
 
 app.get('*', (request, response) => {

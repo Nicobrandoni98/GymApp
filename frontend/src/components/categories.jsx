@@ -13,6 +13,9 @@ const Categories = () => {
   const [cards, setCards] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedExercise, setSelectedExercise] = useState(null);
+  const [peso, setPeso] = useState("");
+  const [repeticiones, setRepeticiones] = useState("");
+  const [series, setSeries] = useState("");
 
   useEffect(() => {
     urlCategories.getAll().then((response) => {
@@ -28,12 +31,34 @@ const Categories = () => {
     setSelectedExercise(null);
     setModalIsOpen(false);
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert("Datos enviados");
-    handleCloseModal();
-  };
+    if (!selectedExercise) return;
 
+    const exerciseData = {
+      name: selectedExercise.name,
+      peso: Number(peso),
+      repeticiones: Number(repeticiones),
+      series: Number(series),
+    };
+    console.log(exerciseData);
+    
+
+    /* axios
+      .put(
+        `https://gymapp-ift3.onrender.com/api/categories/${selectedExercise._id}/exercise`,
+        exerciseData
+      ) // Asegúrate de que `categoryId` esté disponible
+      .then((response) => {
+        console.log("Datos actualizados", response.data);
+        handleCloseModal();
+        // Podrías agregar lógica para actualizar el estado de las tarjetas si es necesario
+      })
+      .catch((error) => {
+        console.error("Error actualizando los datos", error);
+      }); */
+  };
   return (
     <div>
       <Container fluid style={{ paddingTop: 56 }}>
@@ -91,17 +116,17 @@ const Categories = () => {
                         <form onSubmit={handleSubmit}>
                           <label>
                             Peso:
-                            <input type="number" required />
+                            <input type="number" required onChange={(e) => setPeso(e.target.value)}/>
                           </label>
                           <br />
                           <label>
                             Repeticiones:
-                            <input type="number" required />
+                            <input type="number" required onChange={(e) => setRepeticiones(e.target.value)}/>
                           </label>
                           <br />
                           <label>
                             Series:
-                            <input type="number" required />
+                            <input type="number" required onChange={(e) => setSeries(e.target.value)}/>
                           </label>
                           <button type="submit">Enviar</button>
                           <button type="button" onClick={handleCloseModal}>
@@ -111,7 +136,6 @@ const Categories = () => {
                         </form>
                         {selectedExercise && (
                           <div>
-                            <p>Nombre del ejercicio: {selectedExercise.name}</p>
                             <p>Peso: {selectedExercise.peso}</p>
                             <p>Repeticiones: {selectedExercise.repeticiones}</p>
                             <p>Series: {selectedExercise.series}</p>
