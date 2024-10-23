@@ -12,16 +12,22 @@ Modal.setAppElement("#root");
 const Categories = () => {
   const [cards, setCards] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedExercise, setSelectedExercise] = useState(null);
 
-  
   useEffect(() => {
     urlCategories.getAll().then((response) => {
       setCards(response);
     });
   }, []);
 
-  const handleOpenModal = () => setModalIsOpen(true);
-  const handleCloseModal = () => setModalIsOpen(false);
+  const handleOpenModal = (exercise) => {
+    setModalIsOpen(true);
+    setSelectedExercise(exercise);
+  };
+  const handleCloseModal = () => {
+    setSelectedExercise(null);
+    setModalIsOpen(false);
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
     alert("Datos enviados");
@@ -30,7 +36,7 @@ const Categories = () => {
 
   return (
     <div>
-      <Container fluid style={{paddingTop: 56}}>
+      <Container fluid style={{ paddingTop: 56 }}>
         <Row>
           <Accordion>
             {cards.map((card, index) => {
@@ -49,14 +55,18 @@ const Categories = () => {
                       return (
                         <div
                           key={index}
-                          style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            alignItems: "center",
+                          }}
                         >
                           <p key={index}>{exercise.name}</p>
                           <img
                             src="/media/cargar-datos-exercise.png"
                             alt="imagen-cargar-datos"
                             style={{ width: "20px", cursor: "pointer" }}
-                            onClick={handleOpenModal}
+                            onClick={() => handleOpenModal(exercise)}
                           />
                         </div>
                       );
@@ -99,18 +109,14 @@ const Categories = () => {
                           </button>
                           <br />
                         </form>
-                        <p>
-                        {card.exercise.map((info, index) => {
-                          return (
-                            <div key={index}>
-
-                            <p>peso: {info.peso}</p>
-                            <p>repeticiones: {info.repeticiones}</p>
-                            <p>series: {info.series}</p>
-                            </div>
-                          )
-                        })}
-                        </p>
+                        {selectedExercise && (
+                          <div>
+                            <p>Nombre del ejercicio: {selectedExercise.name}</p>
+                            <p>Peso: {selectedExercise.peso}</p>
+                            <p>Repeticiones: {selectedExercise.repeticiones}</p>
+                            <p>Series: {selectedExercise.series}</p>
+                          </div>
+                        )}
                       </Modal>
                     </div>
                   </Accordion.Body>
