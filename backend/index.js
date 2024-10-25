@@ -49,10 +49,10 @@ app.post("/api/categories", (request, response) => {
 });
 
 app.put("/api/categories/:id/exercise", async(request, response) => {
-  const categoryId = request.params.id;
+  const exerciseId = request.params.id;
   const { name, peso, repeticiones, series } = request.body
-  const cat = await Categorie.findOne({"exercise._id": categoryId})
-  const existingExercise = cat.exercise.id(categoryId)
+  const cat = await Categorie.findOne({"exercise._id": exerciseId})
+  const existingExercise = cat.exercise.id(exerciseId)
 
   if (existingExercise) {
     existingExercise.peso = peso;
