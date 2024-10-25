@@ -71,10 +71,7 @@ app.put("/api/categories/:id/exercise", async(request, response) => {
         existingExercise.peso = peso;
         existingExercise.repeticiones = repeticiones;
         existingExercise.series = series;
-      } else {
-        category.exercise.push({ name, peso, repeticiones, series });
-      }
-
+      } 
       return category.save();
     })
     .then(updatedCategory => {
@@ -89,7 +86,20 @@ res-sendFile(patg.join(__dirname, '')))
 /* app.use('/api/users', usersRouter) */
 
 
+// ADMIN PARA AGREGAR EJERCICIOS
+app.get("/api/admin", (request, response) => {
+  response.send("server Works")
+});
 
+app.post("/api/admin", (request, response) => {
+  const body = request.body;
+  response.json(body);
+});
+
+
+app.get('*', (request, response) => {
+  response.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+});
 
 app.use(middleware.unknownEndpoint);
 

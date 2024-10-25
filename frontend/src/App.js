@@ -2,7 +2,8 @@ import Categories from "./components/categories.jsx";
 import { Routes, Route } from "react-router-dom";
 import Category from "./components/category.jsx";
 import Home from "./components/home.jsx";
-import Login from './components/login.jsx'
+import Login from './components/login.jsx';
+import Admin from "./components/admin.jsx";
 
 const App = () => {
   return (
@@ -68,6 +69,7 @@ const App = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/category/:id" element={<Category />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
       </div>
     </>
