@@ -48,11 +48,21 @@ app.post("/api/categories", (request, response) => {
   });
 });
 
-app.put("/api/categories/:id/exercise", (request, response) => {
+app.put("/api/categories/:id/exercise", async(request, response) => {
   const categoryId = request.params.id;
   const { name, peso, repeticiones, series } = request.body
+  const cat = await Categorie.findOne({"exercise._id": categoryId})
+  const existingExercise = cat.exercise.id(categoryId)
 
-  Categorie.findById(categoryId)
+  if (existingExercise) {
+    existingExercise.peso = peso;
+    existingExercise.repeticiones = repeticiones;
+    existingExercise.series = series;
+  } 
+  return cat.save();
+
+
+/*   Categorie.findById(categoryId)
     .then(category => {
 
       const existingExercise = category.exercise.find(ex => ex.name === name);
@@ -69,12 +79,11 @@ app.put("/api/categories/:id/exercise", (request, response) => {
     })
     .then(updatedCategory => {
       response.json(updatedCategory);
-    })
+    }) */
 });
 
-app.get('*', (request, response) => {
-  response.sendFile(path.resolve(__dirname, 'build', 'index.html'));
-});
+app.get('*', (req, rest) =>
+res-sendFile(patg.join(__dirname, '')))
 
 
 /* app.use('/api/users', usersRouter) */

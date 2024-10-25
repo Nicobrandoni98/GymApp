@@ -45,19 +45,19 @@ const Categories = () => {
     console.log(exerciseData);
     
 
-    /* axios
+    axios
       .put(
-        `https://gymapp-ift3.onrender.com/api/categories/${selectedExercise._id}/exercise`,
+        `http://localhost:3001/api/categories/${selectedExercise._id}/exercise`,
         exerciseData
-      ) // Asegúrate de que `categoryId` esté disponible
+      ) 
       .then((response) => {
         console.log("Datos actualizados", response.data);
         handleCloseModal();
-        // Podrías agregar lógica para actualizar el estado de las tarjetas si es necesario
+        
       })
       .catch((error) => {
         console.error("Error actualizando los datos", error);
-      }); */
+      });
   };
   return (
     <div>
