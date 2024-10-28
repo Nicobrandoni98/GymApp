@@ -10,7 +10,7 @@ import Modal from "react-modal";
 Modal.setAppElement("#root");
 
 const Categories = () => {
-  const [cards, setCards] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedExercise, setSelectedExercise] = useState(null);
   const [peso, setPeso] = useState("");
@@ -19,13 +19,14 @@ const Categories = () => {
 
   useEffect(() => {
     urlCategories.getAll().then((response) => {
-      setCards(response);
+      setCategories(response);
     });
   }, []);
+  console.log(categories);
 
   const handleOpenModal = (exercise) => {
-    setModalIsOpen(true);
     setSelectedExercise(exercise);
+    setModalIsOpen(true);
   };
   const handleCloseModal = () => {
     setSelectedExercise(null);
@@ -33,7 +34,7 @@ const Categories = () => {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    /* event.preventDefault(); */
     if (!selectedExercise) return;
 
     const exerciseData = {
@@ -42,18 +43,17 @@ const Categories = () => {
       repeticiones: Number(repeticiones),
       series: Number(series),
     };
-    console.log(exerciseData);
-    
+
+    console.log("exercise data: ", exerciseData);
 
     axios
       .put(
         `http://localhost:3001/api/categories/${selectedExercise._id}/exercise`,
         exerciseData
-      ) 
+      )
       .then((response) => {
         console.log("Datos actualizados", response.data);
         handleCloseModal();
-        
       })
       .catch((error) => {
         console.error("Error actualizando los datos", error);
@@ -64,7 +64,7 @@ const Categories = () => {
       <Container fluid style={{ paddingTop: 56 }}>
         <Row>
           <Accordion>
-            {cards.map((card, index) => {
+            {categories.map((card, index) => {
               return (
                 <Accordion.Item eventKey={index.toString()} key={index}>
                   <Accordion.Header>
@@ -116,17 +116,29 @@ const Categories = () => {
                         <form onSubmit={handleSubmit}>
                           <label>
                             Peso:
-                            <input type="number" required onChange={(e) => setPeso(e.target.value)}/>
+                            <input
+                              type="number"
+                              required
+                              onChange={(e) => setPeso(e.target.value)}
+                            />
                           </label>
                           <br />
                           <label>
                             Repeticiones:
-                            <input type="number" required onChange={(e) => setRepeticiones(e.target.value)}/>
+                            <input
+                              type="number"
+                              required
+                              onChange={(e) => setRepeticiones(e.target.value)}
+                            />
                           </label>
                           <br />
                           <label>
                             Series:
-                            <input type="number" required onChange={(e) => setSeries(e.target.value)}/>
+                            <input
+                              type="number"
+                              required
+                              onChange={(e) => setSeries(e.target.value)}
+                            />
                           </label>
                           <button type="submit">Enviar</button>
                           <button type="button" onClick={handleCloseModal}>

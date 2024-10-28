@@ -58,9 +58,9 @@ app.put("/api/categories/:id/exercise", async(request, response) => {
     existingExercise.peso = peso;
     existingExercise.repeticiones = repeticiones;
     existingExercise.series = series;
-  } 
-  return cat.save();
-
+    await cat.save();
+    return response.status(200).json({ message: 'Ejercicio actualizado'}) 
+  } else {return response.status(404).json({error: 'Ejercicio no encontrado'})}
 
 /*   Categorie.findById(categoryId)
     .then(category => {

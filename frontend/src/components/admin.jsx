@@ -1,8 +1,18 @@
 import { useState, useEffect, React } from "react";
+import urlCategories from "../services/urlCategories.js";
 
 const Admin = () => {
 
+    const [categories, setCategories] = useState([]);
     const [addExercise, setAddExercise] = useState("")
+
+    useEffect(() => {
+        urlCategories.getAll().then((response) => {
+          setCategories(response);
+        });
+      }, []);
+      console.log(categories);
+      
 
     const sendExercise = (event) => {
         event.preventDefault();
@@ -13,7 +23,7 @@ const Admin = () => {
     return (
         <>
         <div style={{paddingTop:56}}>
-            <h1>Agrega ejercicios</h1>
+            <h1>Agrega ejercicios</h1>|
         </div>
 
         <form onSubmit={sendExercise}>
