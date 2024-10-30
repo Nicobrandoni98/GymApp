@@ -10,7 +10,7 @@ console.log("connecting to", url);
 
 mongoose
   .connect(url)
-  .then((resulta) => {
+  .then((result) => {
     console.log("connected to MongoDB");
   })
   .catch((error) => {
@@ -18,15 +18,14 @@ mongoose
   });
 
 const categorieSchema = new mongoose.Schema({
-  title: String,
-  exercise: [
-    {
-      name: String,
-      peso: Number,
-      repeticiones: Number,
-      series: Number,
-    },
-  ],
+  title: {
+    type: String,
+    required: true
+  },
+  exercise: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Exercise"
+  },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
